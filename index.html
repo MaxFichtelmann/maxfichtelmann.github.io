@@ -1,6 +1,47 @@
 <html>
 <body>
-Hello World
+	<input id="in" type="number"/>
+	<button id="go">Go</button>
+	<p id="out"></p>
+
+<script>
+(function() {
+	var input = document.getElementById("in");
+	var output = document.getElementById("out");
+	var go = document.getElementById("go");
+	
+	function findPrimes(max) {
+		var primes = [2];
+		var n = 3;
+		while(n<max) {
+			var isPrime = true;
+
+			primes.forEach(function(prime) {
+				if (n % prime === 0) {
+					isPrime = false;
+				}
+			});
+			if (isPrime) {
+				primes.push(n);
+			}
+			n++;
+		}
+
+		return primes;
+	}
+
+	go.onclick= function() {
+		output.innerHTML = '';
+		var primes = findPrimes(input.value);
+
+		primes.forEach(function (prime) {
+			var entry = document.createElement("P");
+			entry.textContent = prime;
+			output.appendChild(entry);
+		});
+	}
+})();
+</script>
 </body>
 </html>
 
